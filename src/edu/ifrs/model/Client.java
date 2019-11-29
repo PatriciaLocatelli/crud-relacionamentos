@@ -6,24 +6,29 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Client {
-	
+
 	@Id
 	@GeneratedValue
 	private long id;
 	private String name;
 	private String email;
-	
+
 	@OneToMany
 	private Set<Phone> phones;
-	
+
+	@ManyToMany
+	private Set<Product> products;
+
 	public Client() {
 		this.phones = new HashSet<>();
+		this.products = new HashSet<>();
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -37,7 +42,7 @@ public class Client {
 	}
 
 	public void setName(String name) {
-		this.name = name;																																			
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -54,6 +59,14 @@ public class Client {
 
 	public void setPhones(Set<Phone> phones) {
 		this.phones = phones;
+	}
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
 	}
 
 }

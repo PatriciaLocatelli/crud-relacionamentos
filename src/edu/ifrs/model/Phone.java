@@ -12,10 +12,10 @@ public class Phone {
 	@GeneratedValue
 	private long id;
 	private String number;
-	
+
 	@ManyToOne
 	private Client client;
-	
+
 	public long getId() {
 		return id;
 	}
@@ -39,7 +39,5 @@ public class Phone {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	
-	
 
 }

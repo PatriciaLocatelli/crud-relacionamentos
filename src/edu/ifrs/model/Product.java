@@ -1,5 +1,8 @@
 package edu.ifrs.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,6 +13,12 @@ public class Product {
 	@GeneratedValue
 	private long id;
 	private String number;
+
+	private Set<Client> client;
+
+	public Product() {
+		this.client = new HashSet<>();
+	}
 
 	public long getId() {
 		return id;
@@ -25,6 +34,14 @@ public class Product {
 
 	public void setNumber(String number) {
 		this.number = number;
+	}
+
+	public Set<Client> getClient() {
+		return client;
+	}
+
+	public void setClient(Set<Client> client) {
+		this.client = client;
 	}
 
 }
