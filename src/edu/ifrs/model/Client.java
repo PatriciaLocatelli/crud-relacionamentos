@@ -18,10 +18,10 @@ public class Client {
 	private String name;
 	private String email;
 
-	@OneToMany
+	@OneToMany(mappedBy = "client")
 	private Set<Phone> phones;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "clients")
 	private Set<Product> products;
 
 	public Client() {
@@ -61,12 +61,20 @@ public class Client {
 		this.phones = phones;
 	}
 
+	public void addPhone(Phone phone) {
+		this.phones.add(phone);
+	}
+
 	public Set<Product> getProducts() {
 		return products;
 	}
 
 	public void setProducts(Set<Product> products) {
 		this.products = products;
+	}
+	
+	public void addProduct(Product product) {
+		this.products.add(product);
 	}
 
 }

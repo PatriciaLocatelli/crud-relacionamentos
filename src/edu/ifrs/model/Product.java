@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Product {
@@ -14,10 +15,11 @@ public class Product {
 	private long id;
 	private String number;
 
-	private Set<Client> client;
+	@ManyToMany
+	private Set<Client> clients;
 
 	public Product() {
-		this.client = new HashSet<>();
+		this.clients = new HashSet<>();
 	}
 
 	public long getId() {
@@ -36,12 +38,16 @@ public class Product {
 		this.number = number;
 	}
 
-	public Set<Client> getClient() {
-		return client;
+	public Set<Client> getClients() {
+		return clients;
 	}
 
-	public void setClient(Set<Client> client) {
-		this.client = client;
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
+	}
+	
+	public void addClient(Client client) {
+		this.clients.add(client);
 	}
 
 }
