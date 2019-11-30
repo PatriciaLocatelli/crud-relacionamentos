@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Client {
 
@@ -19,9 +21,11 @@ public class Client {
 	private String email;
 
 	@OneToMany(mappedBy = "client")
+	@JsonManagedReference
 	private Set<Phone> phones;
-
+	
 	@ManyToMany(mappedBy = "clients")
+	@JsonManagedReference
 	private Set<Product> products;
 
 	public Client() {

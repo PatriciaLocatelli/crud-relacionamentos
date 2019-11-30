@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Phone {
 
@@ -14,6 +16,7 @@ public class Phone {
 	private String number;
 
 	@ManyToOne
+	@JsonBackReference
 	private Client client;
 
 	public long getId() {

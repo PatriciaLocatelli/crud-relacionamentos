@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Product {
 	@Id
@@ -16,6 +18,7 @@ public class Product {
 	private String number;
 
 	@ManyToMany
+	@JsonBackReference
 	private Set<Client> clients;
 
 	public Product() {
