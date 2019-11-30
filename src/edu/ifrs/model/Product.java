@@ -1,6 +1,5 @@
 package edu.ifrs.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -8,22 +7,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Product {
+	
 	@Id
 	@GeneratedValue
 	private long id;
-	private String number;
+	
+	private String name;
 
-	@ManyToMany
+	@ManyToMany	
 	@JsonBackReference
 	private Set<Client> clients;
-
-	public Product() {
-		this.clients = new HashSet<>();
-	}
 
 	public long getId() {
 		return id;
@@ -34,11 +31,11 @@ public class Product {
 	}
 
 	public String getNumber() {
-		return number;
+		return name;
 	}
 
-	public void setNumber(String number) {
-		this.number = number;
+	public void setNumber(String name) {
+		this.name = name;
 	}
 
 	public Set<Client> getClients() {
@@ -52,5 +49,5 @@ public class Product {
 	public void addClient(Client client) {
 		this.clients.add(client);
 	}
-
+	
 }

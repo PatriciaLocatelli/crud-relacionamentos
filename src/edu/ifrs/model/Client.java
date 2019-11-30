@@ -1,9 +1,10 @@
 package edu.ifrs.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -13,26 +14,23 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Client {
-
+	
 	@Id
 	@GeneratedValue
-	private long id;
+	private long id; 
+	
 	private String name;
+	
 	private String email;
 
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "client", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private Set<Phone> phones;
 	
-	@ManyToMany(mappedBy = "clients")
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private Set<Product> products;
-
-	public Client() {
-		this.phones = new HashSet<>();
-		this.products = new HashSet<>();
-	}
-
+	
 	public long getId() {
 		return id;
 	}
@@ -64,7 +62,7 @@ public class Client {
 	public void setPhones(Set<Phone> phones) {
 		this.phones = phones;
 	}
-
+	
 	public void addPhone(Phone phone) {
 		this.phones.add(phone);
 	}
@@ -80,5 +78,5 @@ public class Client {
 	public void addProduct(Product product) {
 		this.products.add(product);
 	}
-
+	
 }
